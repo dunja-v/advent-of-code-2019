@@ -43,7 +43,7 @@ namespace AdventOfCode2019
 
         static int[] LoadProgram()
         {
-            string inputFile = @"C:\Users\Dunja\Documents\Code\AdventOfCode2019\input_2.txt";
+            string inputFile = @"";
             string text = File.ReadAllText(inputFile);
             string[] contents = text.Split(',');
             int[] program = new int[contents.Length];

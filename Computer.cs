@@ -13,37 +13,19 @@ namespace AdventOfCode2019
         public static void CalculateResult()
         {
 
-            for(int noun=0; noun <=99; noun++)
+            int programCounter = 0;
+            int[] memory = LoadProgram();
+
+            while (ExecuteCommand(ref memory, ref programCounter))
             {
-                for(int verb=0; verb<=99; verb++)
-                {
-                    int programCounter = 0;
-                    int[] memory = LoadProgram();
-
-                    memory[1] = noun;
-                    memory[2] = verb;
-
-                    while (ExecuteCommand(ref memory, ref programCounter))
-                    {
-                        continue;
-                    }
-                    
-                    if(memory[0] == 19690720)
-                    {
-                        Console.WriteLine("Found the right pair!");
-                        Console.WriteLine(100 * noun + verb);
-                        break;
-                    }
-                    
-                }
-            }
-            
+                continue;
+            }            
         }
 
 
         static int[] LoadProgram()
         {
-            string inputFile = @"";
+            string inputFile = @"C:\Users\Dunja\Documents\Code\AdventOfCode2019\inputs\input_5.txt";
             string text = File.ReadAllText(inputFile);
             string[] contents = text.Split(',');
             int[] program = new int[contents.Length];
@@ -61,12 +43,14 @@ namespace AdventOfCode2019
             //Console.WriteLine($"Command to be executed: {command}");
             //Array.ForEach(memory, Console.WriteLine);
 
-            if(!commands.TryGetValue((CommandCode) commandCode, out ICommand commandToExecute))
+            int commandKey = commandCode % 100;
+            //Console.WriteLine($"Command: {commandCode}, Command key: {commandKey}");
+            if(!commands.TryGetValue((CommandCode) commandKey, out ICommand commandToExecute))
             {
                 Console.WriteLine("Something went wrong!");
                 return false;
             }
-            return commandToExecute.Execute(ref programCounter, ref memory);            
+            return commandToExecute.Execute(ref programCounter, ref memory, commandCode);            
         }
 
 
@@ -74,6 +58,8 @@ namespace AdventOfCode2019
         {
             Add = 1,
             Multiply = 2,
+            Input = 3,
+            Output = 4,
             Exit = 99
         }
 
@@ -82,6 +68,8 @@ namespace AdventOfCode2019
         {
             [CommandCode.Add] = new AddOperation(),
             [CommandCode.Multiply] = new MultiplyOperation(),
+            [CommandCode.Input] = new InputCommand(1),
+            [CommandCode.Output] = new OutputCommand(),
             [CommandCode.Exit] = new ExitCommand(),
         };
     }

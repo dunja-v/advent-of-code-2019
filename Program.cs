@@ -11,7 +11,7 @@ namespace AdventOfCode2019
     {
         static void Main(string[] args)
         {
-            Password.CalculateResult();
+            Computer.CalculateResult();
         }
 
         

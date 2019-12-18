@@ -8,6 +8,7 @@ namespace AdventOfCode2019.Commands
 {
     interface ICommand
     {
-        bool Execute(ref int programCounter, ref int[] memory);
+        bool Execute(ref int programCounter, ref int[] memory, int commandCode);
+
     }
 }

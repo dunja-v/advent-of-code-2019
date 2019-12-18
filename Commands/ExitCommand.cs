@@ -8,7 +8,7 @@ namespace AdventOfCode2019.Commands
 {
     class ExitCommand : ICommand
     {
-        public bool Execute(ref int programCounter, ref int[] memory)
+        public bool Execute(ref int programCounter, ref int[] memory, int commandCode)
         {
             return false;
         }

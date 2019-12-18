@@ -47,6 +47,9 @@
     <Compile Include="Commands\BinaryOperation.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\InputCommand.cs" />
+    <Compile Include="Commands\OutputCommand.cs" />
+    <Compile Include="Commands\UnaryCommand.cs" />
     <Compile Include="Commands\MultiplyOperation.cs" />
     <Compile Include="FuelCalculator.cs" />
     <Compile Include="Computer.cs" />
